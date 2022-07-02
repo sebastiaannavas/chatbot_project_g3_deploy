@@ -1,0 +1,23 @@
+{
+  "name": "chatbot_project_g3_deploy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "netlify-cli": "^10.7.1"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "mongodb": "^4.7.0",
+    "nodemailer": "^6.7.6",
+    "telebot": "^1.4.1",
+    "translate-google": "^1.5.0",
+    "yup": "^0.32.11"
+  }
+}
