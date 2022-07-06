@@ -2,8 +2,8 @@
 
 const { translate, bot } = require('../settings');
 let {  yup, keys, labels, BUTTONS } = require('../settings');
-let ciudad=["maracaibo", "Maracaibo", "caracas", "Caracas", "valencia", "Valencia", "Maracay", "maracay"]
-let metodos=["Crypto", "crypto", "Transferencia", "transferencia", "efectivo", "Efectivo"]
+let ciudad=["Maracaibo", "Caracas", "Valencia", "Maracay" ]
+let metodos=["USDT", "BTC", "ETH", "Transferencia", "Efectivo"]
 
 function translateMessage (msg, lang, text, replyMarkup, id) {
    
@@ -72,7 +72,8 @@ async function verifica_datos(lang,msg, datos) {
     let val = [];
     let datosLen=datos.length;
 
-    let i = 0
+    datos=datos.map(data => data.trim());
+    let i = 0;
     for (; i < datosLen; i++){
         if(i == 0){            // Para verificar el correo
             let mail = datos[i];

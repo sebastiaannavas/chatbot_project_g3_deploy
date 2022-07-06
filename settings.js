@@ -16,16 +16,16 @@ let BUTTONS = {};
 
 let keys = ["products", "carrito", "info", "buscar", "close", 
             "registrar", "factura", "verCarrito", "language", "opciones", "pago", "modify",
-            "enviar","deleteCarrito", "modCarrito","añadirCarrito", "switch"];
+            " Valoranos ","enviar","deleteCarrito", "modCarrito","añadirCarrito", "switch"];
 
 let labels = ["🛍️ Lista de productos", "🛒 Carrito de Compra", "📃 Info Tienda", "🆔 Elegir producto", "🔙 Volver al menu inicial",
               "🔑 Ingresar Datos", "📝 Crear Factura", "👁️‍🗨️ Ver Carrito de Compra", "🔤 Cambiar idioma", "⚙️ Configuraciones", "💳 Métodos de Pago", "📧 Modificar Correo Asociado",
-               "📤 Enviar Factura", "🛒 Vaciar Carrito", "🔧🛒 Modificar Carrito", "➕ Añadir Productos al Carrito", "/restart"];
+               "📝 Admin ","📤 Enviar Factura", "🛒 Vaciar Carrito", "🔧🛒 Modificar Carrito", "➕ Añadir Productos al Carrito", "/restart"];
               
 
 let commands = ["/products", "/carrito", "/info", "/buscar", "/start",
                 "/registrar", "/factura", "/verCarrito", "/lang", "/opciones", "/pay", "/modify",
-                "/enviarFactura","/vaciarCarrito","/modCart", "/addToCart",  "/start"];
+               "/encuesta", "/enviarFactura","/vaciarCarrito","/modCart", "/addToCart",  "/start"];
 
 let idx = 0, keysLen = keys.length;
 
@@ -46,12 +46,13 @@ const bot = new Telebot({
     }
 });
 
-
+//'https://62bfacf716537f6573afd4e0--luminous-crisp-2d239d.netlify.app'
 // Instancia Axios para la base de datos
 const API_DATABASE = axios.create({
-    baseURL: 'https://62bfacf716537f6573afd4e0--luminous-crisp-2d239d.netlify.app',
+    baseURL: 'http://localhost:8888',   //NOTA: CAMBIAR DIRECCIÓN
     timeout: 10000,
-  });
+});
+
 
 
 

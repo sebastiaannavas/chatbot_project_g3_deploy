@@ -58,19 +58,19 @@ exports.handler = async (event) => {
             await API_DATABASE.put(ENDPOINT_DATABASE.putCart + `?id=${id}`)
 
 
-            if(flag==1){await transporter.sendMail({
+            await transporter.sendMail({
                 from: 'electromartbot@gmail.com', 
                 to: user[0].correo, 
                 subject: "FACTURA ENVIADA", 
                 text: resultado  
             });
-                return output('Factura enviada satisfactoriamente, carrito vaciado satisfactoriamente');} else { return output ('No se han añadido productos al carrito')}
-
+            
+            return output('Factura enviada satisfactoriamente, carrito vaciado satisfactoriamente');
+        } catch (error) {log(error);}
         }
+    }
 
-     catch (error) {log(error);}
 
-}
 
-}
+
 
