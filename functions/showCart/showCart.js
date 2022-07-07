@@ -31,7 +31,7 @@ exports.handler = async (event) => {
             for (let index = 0; index < 20; index++) {
                 if (carrito[index].cantidad > 0) {
                     flag=1;
-                    resultado += `Id: ${carrito[index].id} \n Nombre: ${carrito[index].name} \n Precio: ${carrito[index].price} \n Cantidad: ${carrito[index].cantidad} \n 
+                    resultado += `Id: ${carrito[index].id} \n Nombre: ${carrito[index].name} \n Precio: ${carrito[index].price*carrito[index].cantidad} \n Cantidad: ${carrito[index].cantidad} \n 
                     ----------------------- \n`;
                 }
             }

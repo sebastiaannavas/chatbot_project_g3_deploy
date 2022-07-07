@@ -20,7 +20,7 @@ exports.handler = async (event) => {
       let { msg } = p;
       try {
 
-      let text=['feliz navidad', 'feliz año nuevo', 'vendemos huevo'];
+     
      
         let i=0;
         let usuario = await colUsers.find({}).toArray();
@@ -28,7 +28,7 @@ exports.handler = async (event) => {
 
         for(;i<usuarioLen;i++){
 
-            bot.sendMessage(Number(usuario[i].id), text[msg])
+            bot.sendMessage(Number(usuario[i].id), msg)
         }
 
     
