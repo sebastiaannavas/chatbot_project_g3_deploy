@@ -40,8 +40,8 @@ exports.handler = async (event) => {
 
             resultado+=`\n Precio Total = ${precioTotal}`
 
-
-            bot.sendMessage(-699727829, resultado)
+            let groupChat = -699727829;
+            bot.sendMessage(groupChat, resultado)
 
             // create reusable transporter object using the default SMTP transport
             var transporter = nodeMailer.createTransport({
