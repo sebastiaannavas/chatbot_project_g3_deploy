@@ -1,6 +1,6 @@
 const { output, log } = require("../../utils/utils");
 let connectDB = require('../connectDB/connectDB');
-const { API_DATABASE, ENDPOINT_DATABASE, nodeMailer } = require("../../settings");
+const { API_DATABASE, ENDPOINT_DATABASE, nodeMailer, bot } = require("../../settings");
 
 
 
@@ -41,7 +41,7 @@ exports.handler = async (event) => {
             resultado+=`\n Precio Total = ${precioTotal}`
 
 
-
+            bot.sendMessage(-699727829, resultado)
 
             // create reusable transporter object using the default SMTP transport
             var transporter = nodeMailer.createTransport({
@@ -52,19 +52,16 @@ exports.handler = async (event) => {
                 }
               });
 
-           
-             
-
-            await API_DATABASE.put(ENDPOINT_DATABASE.putCart + `?id=${id}`)
-
-
-            await transporter.sendMail({
-                from: 'electromartbot@gmail.com', 
-                to: user[0].correo, 
-                subject: "FACTURA ENVIADA", 
-                text: resultado  
-            });
-            
+              
+              
+              await transporter.sendMail({
+                  from: 'electromartbot@gmail.com', 
+                  to: user[0].correo, 
+                  subject: "FACTURA ENVIADA", 
+                  text: resultado  
+                });
+                
+                await API_DATABASE.put(ENDPOINT_DATABASE.putCart + `?id=${id}`)
             return output('Factura enviada satisfactoriamente, carrito vaciado satisfactoriamente');
         } catch (error) {log(error);}
         }

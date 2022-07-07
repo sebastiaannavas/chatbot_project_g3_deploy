@@ -1,5 +1,6 @@
 
-let axios = require('axios');
+const { API_DATABASE, ENDPOINT_DATABASE } = require("../../settings");
+
 
 let {log, output} = require('../../utils/utils');
 let connectDB = require('../connectDB/connectDB');
@@ -16,7 +17,7 @@ let client = await connectDB()
 const colProductos = client.db().collection('productos');
 
  
-const respuesta = await axios.get(ENDPOINT);
+const respuesta = await API_DATABASE.get(ENDPOINT);
 let productos = respuesta.data; 
      
 if (method == "POST") {
@@ -38,12 +39,13 @@ if (method == "POST") {
        log (error);
     }
 }
+
 if (method == "GET") {
     try {
         let r = await colProductos.find({}).toArray();
         return output(r);
     } catch (error) {
-        log(error);
+        log('error');
     }
 }
 }
