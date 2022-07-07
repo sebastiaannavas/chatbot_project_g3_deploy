@@ -73,7 +73,7 @@ const ENDPOINT_DATABASE = {
     userData:"/userData",
     createTicket:"/createTicket",
     sendMail:"/sendMail",
-    sendMessage:"sendMessage"
+    sendMessage:"/sendMessage"
 }
 
 
