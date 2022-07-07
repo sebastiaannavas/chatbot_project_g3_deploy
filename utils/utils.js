@@ -8,20 +8,29 @@ let metodos=["USDT", "BTC", "ETH", "Transferencia", "Efectivo"]
 function translateMessage (msg, lang, text, replyMarkup, id) {
    
     if(!replyMarkup){
-         if (!id){ 
-            
-            translate(text, {to: lang}).then(res => {
-            bot.sendMessage(msg.from.id, res  ) })
-            .catch(err => {
-                console.error(err)
+        if (!id){ 
+           
+           translate(text, {to: lang}).then(res => {
+           bot.sendMessage(msg.from.id, res  ) })
+           .catch(err => {
+               console.error(err)
 
-            });} else {
-                
-                translate(text, {to: lang}).then(res => {
-                bot.sendMessage(msg.from.id, res, {ask: id}  ) })
-                .catch(err => {
-                console.error(err)})       
-       
+           });} else {
+               if(!replyMarkup){
+
+                  translate(text, {to: lang}).then(res => {
+               bot.sendMessage(msg.from.id, res, {ask: id}  ) })
+               .catch(err => {
+               console.error(err)})  
+               } else {
+                   translate(text, {to: lang}).then(res => {
+                       bot.sendMessage(msg.from.id, res, {replyMarkup}, {ask: id}  ) })
+                       .catch(err => {
+                       console.error(err)})  
+
+               }
+                     
+      
         }} else {
             
             translate(text, {to: lang}).then(res => {
