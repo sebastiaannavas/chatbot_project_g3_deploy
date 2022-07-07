@@ -22,12 +22,12 @@ exports.handler = async (event) => {
             let { id } = p;
             let user = await colUsers.find({ id }).toArray();
             let carrito = user[0].carrito;
-            let resultado = `ELECTRO-MART  \n FACTURA \n Carrito de compras\n Cliente: ${user.nombre} ${user.apellido} \n correo: ${user.apellido} \n ciudad: ${user.ciudad}  `
+            let resultado = `ELECTRO-MART  \n FACTURA \n Carrito de compras\n Cliente: ${user[0].nombre} ${user[0].apellidos} \n correo: ${user[0].correo} \n ciudad: ${user[0].ciudad} \n\n `
             let precioTotal=0;
 
             for (let index = 0; index < 20; index++) {
                 if (carrito[index].cantidad > 0) {
-                    flag=1;
+                    
                     precioTotal+=carrito[index].price*carrito[index].cantidad;
                     resultado += `Id: ${carrito[index].id} \n Nombre: ${carrito[index].name} \n Precio: ${carrito[index].price} \n Cantidad: ${carrito[index].cantidad} \n 
                     ----------------------- \n`;
@@ -35,7 +35,7 @@ exports.handler = async (event) => {
             }
 
             resultado+=`\n Precio Total = ${precioTotal}`
-            if(flag==1){return output(resultado);} else { return output ('No se han añadido productos al carrito')}
+          return output(resultado); 
             
         } catch (error) {
             log(error);

@@ -2,26 +2,35 @@
 
 const { translate, bot } = require('../settings');
 let {  yup, keys, labels, BUTTONS } = require('../settings');
-let ciudad=["maracaibo", "Maracaibo", "caracas", "Caracas", "valencia", "Valencia", "Maracay", "maracay"]
-let metodos=["Crypto", "crypto", "Transferencia", "transferencia", "efectivo", "Efectivo"]
+let ciudad=["Maracaibo", "Caracas", "Valencia", "Maracay" ]
+let metodos=["USDT", "BTC", "ETH", "Transferencia", "Efectivo"]
 
 function translateMessage (msg, lang, text, replyMarkup, id) {
    
     if(!replyMarkup){
-         if (!id){ 
-            
-            translate(text, {to: lang}).then(res => {
-            bot.sendMessage(msg.from.id, res  ) })
-            .catch(err => {
-                console.error(err)
+        if (!id){ 
+           
+           translate(text, {to: lang}).then(res => {
+           bot.sendMessage(msg.from.id, res  ) })
+           .catch(err => {
+               console.error(err)
 
-            });} else {
-                
-                translate(text, {to: lang}).then(res => {
-                bot.sendMessage(msg.from.id, res, {ask: id}  ) })
-                .catch(err => {
-                console.error(err)})       
-       
+           });} else {
+               if(!replyMarkup){
+
+                  translate(text, {to: lang}).then(res => {
+               bot.sendMessage(msg.from.id, res, {ask: id}  ) })
+               .catch(err => {
+               console.error(err)})  
+               } else {
+                   translate(text, {to: lang}).then(res => {
+                       bot.sendMessage(msg.from.id, res, {replyMarkup}, {ask: id}  ) })
+                       .catch(err => {
+                       console.error(err)})  
+
+               }
+                     
+      
         }} else {
             
             translate(text, {to: lang}).then(res => {
@@ -72,7 +81,8 @@ async function verifica_datos(lang,msg, datos) {
     let val = [];
     let datosLen=datos.length;
 
-    let i = 0
+    datos=datos.map(data => data.trim());
+    let i = 0;
     for (; i < datosLen; i++){
         if(i == 0){            // Para verificar el correo
             let mail = datos[i];
